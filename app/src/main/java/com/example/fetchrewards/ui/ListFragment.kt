@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.fetchrewards.R
@@ -35,9 +36,8 @@ class ListFragment: Fragment() {
     private fun init() {
         Log.d(TAG, "init")
         itemViewModel = ViewModelProvider(this, ItemViewModelFactory(requireActivity().application)).get(ItemViewModel::class.java)
-        fetchItems = itemViewModel.getFetchItems()
-        Log.d(TAG, fetchItems.size.toString())
         initRV()
+        itemViewModel.getFetchItems()
         filterList()
     }
 
@@ -50,14 +50,19 @@ class ListFragment: Fragment() {
     }
 
     private fun filterList() {
-        val filteredList = ArrayList<ItemModel>()
-
-        fetchItems.forEach {
-            if (it.getItemName().trim().isNotEmpty()) {
-                filteredList.add(it)
+        Log.d(TAG, "filterList function")
+        itemViewModel.getItemList().observe(viewLifecycleOwner, Observer {
+            val itemArrayList = ArrayList<ItemModel>()
+            it.forEach {
+                if (!it.getItemName().isNullOrEmpty()) {
+                    itemArrayList.add(it)
+                }
             }
-        }
 
-        fetchItemAdapter.submitList(filteredList)
+            itemArrayList.forEach {
+                Log.d(TAG, it.getItemName())
+            }
+            fetchItemAdapter.submitList(itemArrayList)
+        })
     }
 }

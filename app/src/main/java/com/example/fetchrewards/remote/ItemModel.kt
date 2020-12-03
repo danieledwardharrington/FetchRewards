@@ -15,7 +15,7 @@ class ItemModel {
 
     @SerializedName("name")
     @Expose
-    private var itemName: String = ""
+    private var itemName: String? = ""
 
     fun getItemId(): Int {
         return itemId
@@ -33,7 +33,7 @@ class ItemModel {
         itemListId = newListId
     }
 
-    fun getItemName(): String {
+    fun getItemName(): String? {
         return itemName
     }
 
