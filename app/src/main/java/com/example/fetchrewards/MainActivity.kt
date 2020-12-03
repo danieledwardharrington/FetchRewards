@@ -1,5 +1,11 @@
 package com.example.fetchrewards
 
+/*
+Daniel Harrington
+Fetch Rewards Coding Exercise
+December 2, 2020
+ */
+
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.example.fetchrewards.ui.ListFragment
