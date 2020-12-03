@@ -52,17 +52,23 @@ class ListFragment: Fragment() {
     private fun filterList() {
         Log.d(TAG, "filterList function")
         itemViewModel.getItemList().observe(viewLifecycleOwner, Observer {
-            val itemArrayList = ArrayList<ItemModel>()
+            var itemArrayList = ArrayList<ItemModel>()
             it.forEach {
                 if (!it.getItemName().isNullOrEmpty()) {
                     itemArrayList.add(it)
                 }
             }
 
+            itemArrayList = sortList(itemArrayList)
             itemArrayList.forEach {
                 Log.d(TAG, it.getItemName())
             }
             fetchItemAdapter.submitList(itemArrayList)
         })
+    }
+
+    private fun sortList(itemList: ArrayList<ItemModel>): ArrayList<ItemModel> {
+        val sortedList = itemList.sortedWith(compareBy({it.getItemListId()}, {it.getItemId()}))
+        return ArrayList(sortedList)
     }
 }
