@@ -10,4 +10,5 @@ I'm using RxJava 3, Retrofit, Gson, View Model, Live Data, and Card View for thi
 
 # Notes
 
-I left a fair amount of Log messages around points of interest (for me). I can obviously delete these types of things in a larger scale, more professional setting if it's not part of style guidelines/preferences.
+I left a fair amount of Log messages around points of interest (for me). I can obviously delete these types of things in a larger scale, more professional setting if it's not part of style guidelines/preferences. I conducted my testing
+on the Android Studio Emulator with a Pixel 3 running API 29.
